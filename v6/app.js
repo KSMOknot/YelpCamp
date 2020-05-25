@@ -19,7 +19,7 @@ app.use(express.static(__dirname + "/public"));
 // Passport Configuration
 
 app.use(require('express-session')({
-    secret: "Iffit",
+    secret: "Ifrit",
     resave: false,
     saveUninitialized: false
 }));
@@ -118,6 +118,19 @@ app.post('/register', function(req, res) {
             res.redirect("/campgrounds");
         });
     });
+});
+
+//show login form
+app.get('/login', function(req, res){
+    res.render('login');
+});
+
+//handling login logic
+app.post('/login', passport.authenticate("local", 
+    {
+        successRedirect: "/campgrounds",
+        failureRedirect: "login"
+    }), function(req, res){
 });
 
 app.listen(3000, () => console.log('YelpCamp has started...'));
