@@ -30,13 +30,19 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// Middleware that will run currentUser on every single route.
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
+    next();
+});
+
 app.get('/', function(req, res) {
     res.render('landing');
 });
 
 // INDEX - Show all campgrounds
 app.get('/campgrounds', function(req, res) {
-    Campground.find({}, (err, allCampgrounds) => err ? console.log(err) : res.render('campgrounds/index', { campgrounds: allCampgrounds }));
+    Campground.find({}, (err, allCampgrounds) => err ? console.log(err) : res.render('campgrounds/index', { campgrounds: allCampgrounds}));
 });
 
 // CREATE - 
