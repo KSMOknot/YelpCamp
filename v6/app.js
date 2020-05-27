@@ -106,7 +106,9 @@ app.post("/campgrounds/:id/comments", isLoggedIn, function(req, res) {
     });
 });
 
+// =============
 // Auth Routes
+// =============
 
 app.get('/register', function(req, res) {
     res.render("register");
