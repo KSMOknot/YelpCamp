@@ -85,13 +85,13 @@ app.post("/campgrounds/:id/comments", isLoggedIn, function(req, res) {
     Campground.findById(req.params.id, function(err, campground) {
         if(err){
             console.log(err);
-            redirect("/campgrounds");
+            res.redirect("/campgrounds");
         } else {
             Comment.create(req.body.comment, function(err, comment){
                 if(err){
                     console.log(err);
                 } else {
-                    campgrounds.comments.push(comment);
+                    campground.comments.push(comment);
                     campground.save();
                     res.redirect("/campgrounds/" + campground._id);
                 }
