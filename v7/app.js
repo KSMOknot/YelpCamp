@@ -41,7 +41,7 @@ app.use(function(req, res, next){
 });
 
 app.use(indexRoutes);
-app.use(commentRoutes);
+app.use("/campgrounds/:id/comments",commentRoutes);
 app.use("/campgrounds", campgroundRoutes);
 
 app.listen(3000, () => console.log('YelpCamp has started...'));

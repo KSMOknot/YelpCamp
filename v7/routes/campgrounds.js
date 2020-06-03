@@ -3,7 +3,7 @@ const router  = express.Router();
 const Campground = require("../models/campground");
 
 // INDEX - Show all campgrounds
-router.get('/campgrounds', function(req, res) {
+router.get('/', function(req, res) {
     Campground.find({}, (err, allCampgrounds) => err ? console.log(err) : res.render('campgrounds/index', { campgrounds: allCampgrounds}));
 });
 
